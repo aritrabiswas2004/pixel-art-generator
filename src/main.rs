@@ -19,20 +19,17 @@ fn upscale(downscaled_img: &DynamicImage, new_width: u32, new_height: u32) -> Dy
     downscaled_img.resize(new_width, new_height, DEFAULT_FILTER)
 }
 
-fn main() -> Result<(), Box<dyn std::error::Error>> {
-
-    let img_path = Path::new("street.jpg");
+fn pixelize(image_path: &str, downscale_height: u32) -> Result<(), Box<dyn std::error::Error>>{
+    let img_path = Path::new(image_path);
     let img = image::open(img_path)?;
     let (img_width, img_height) = img.dimensions();
     println!("Original image dimensions {} x {}", img_width, img_height);
 
-    let downscale_height = 64;
-
     let dir = PathBuf::from(
         img_path
-        .file_stem()
-        .and_then(|f| {f.to_str()})
-        .unwrap_or("output")
+            .file_stem()
+            .and_then(|f| {f.to_str()})
+            .unwrap_or("output")
     );
 
     fs::create_dir_all(&dir)?;
@@ -49,4 +46,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("Final image upscale resolution --- {} x {}", img_width, img_height);
 
     Ok(())
+}
+
+fn main(){
+    pixelize("bluemarble.jpg", 128).expect("Something went horribly wrong");
 }
