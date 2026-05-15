@@ -1,0 +1,10 @@
+[package]
+name = "pixel-art-generator"
+version = "0.1.0"
+edition = "2024"
+authors = ["Aritra Biswas <aritrabb@gmail.com>"]
+readme = "README.md"
+
+
+[dependencies]
+image = "0.25.10"
