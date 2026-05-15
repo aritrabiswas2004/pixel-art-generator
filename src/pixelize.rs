@@ -40,12 +40,12 @@ pub fn pixelize(image_path: &str, downscale_height: u32, verbose: bool) -> Resul
     if verbose {
         println!("[LOG] Downscaled image dimensions {new_width} x {new_height}");
     }
-    let ds_format_path = dir.join(format!("downscaled_{downscale_height}.jpg"));
+    let ds_format_path = dir.join(format!("{}_downscaled_{downscale_height}.jpg", img_path.file_stem().and_then(|f| {f.to_str()}).unwrap_or("error")));
     new_img.save(&ds_format_path)?;
 
     let final_upscale = upscale(&new_img, img_width, img_height);
     let (final_width, final_height) = new_img.dimensions();
-    let upscale_format_path = dir.join(format!("final_{downscale_height}.jpg"));
+    let upscale_format_path = dir.join(format!("{}_final_{downscale_height}.jpg", img_path.file_stem().and_then(|f| {f.to_str()}).unwrap_or("error")));
     final_upscale.save(&upscale_format_path)?;
 
     println!("======== Processing Complete ===========");
