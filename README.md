@@ -1,6 +1,6 @@
 # Pixel Art Conversion Tool
 
-Convert any image to a 8-bit retro style image commonly referred to as [pixel art.](https://www.reddit.com/r/PixelArt/)
+Convert any image to a 8-bit retro style image commonly referred to as [pixel art](https://www.reddit.com/r/PixelArt/).
 
 This particular tool provides more autonomy to the user, allowing them to choose various 
 downscaling ratios to alter the level of detail they want to retain in the image.
@@ -29,7 +29,7 @@ cargo build
 and alternatively you can run directly which would start the CLI tool
 
 ```shell
-cargo run -- --imagepath ./path/to/image.jpg
+cargo run -- ./path/to/image.jpg
 ```
 
 ## Examples
@@ -40,8 +40,8 @@ is created.
 All these images are processed at a downscaled height of 128 pixels before being upscaled
 to its original dimension. This can be changed though, as per the user's requirements.
 
-| Original                                                                                                  | Processed                                         |
-|-----------------------------------------------------------------------------------------------------------|---------------------------------------------------|
-| ![bluemarble](./docs/assets/bluemarble.jpg) Harrison Schmitt, "The Blue Marble", Apollo 17, NASA          | ![bmrbl](./docs/assets/bluemarble_final_128.jpg)  |
-| ![earthrise](./docs/assets/earthrise.jpg) Credit: William Anders, "Earthrise", Apollo 8, NASA             | ![ethrs](./docs/assets/earthrise_final_128.jpg)   |
-| ![kangawa](./docs/assets/kanagawa.jpg) Credit: Katsushika Hokusai, "The Great Wave off Kanagawa," c. 1831 | ![kanagawa](./docs/assets/kanagawa_final_128.jpg) |
+| Original                                                                                           | Processed                                  |
+|----------------------------------------------------------------------------------------------------|--------------------------------------------|
+| ![bluemarble](assets/bluemarble.jpg) Harrison Schmitt, "The Blue Marble", Apollo 17, NASA          | ![bmrbl](assets/bluemarble_final_128.jpg)  |
+| ![earthrise](assets/earthrise.jpg) Credit: William Anders, "Earthrise", Apollo 8, NASA             | ![ethrs](assets/earthrise_final_128.jpg)   |
+| ![kangawa](assets/kanagawa.jpg) Credit: Katsushika Hokusai, "The Great Wave off Kanagawa," c. 1831 | ![kanagawa](assets/kanagawa_final_128.jpg) |

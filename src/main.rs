@@ -8,7 +8,7 @@ use clap::Parser;
 #[command(version, about, long_about = None)]
 struct Args {
     /// Path to the JPG image
-    #[arg(short, long)]
+    #[arg(value_name = "IMAGE")]
     imagepath: String,
 
     /// Downscaling height value in pixels
