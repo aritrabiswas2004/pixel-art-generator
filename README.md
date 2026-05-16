@@ -43,5 +43,5 @@ to its original dimension. This can be changed though, as per the user's require
 | Original                                                                                           | Processed                                  |
 |----------------------------------------------------------------------------------------------------|--------------------------------------------|
 | ![bluemarble](assets/bluemarble.jpg) Harrison Schmitt, "The Blue Marble", Apollo 17, NASA          | ![bmrbl](assets/bluemarble_final_128.jpg)  |
-| ![earthrise](assets/earthrise.jpg) Credit: William Anders, "Earthrise", Apollo 8, NASA             | ![ethrs](assets/earthrise_final_128.jpg)   |
-| ![kangawa](assets/kanagawa.jpg) Credit: Katsushika Hokusai, "The Great Wave off Kanagawa," c. 1831 | ![kanagawa](assets/kanagawa_final_128.jpg) |
+| ![earthrise](assets/earthrise.jpg) William Anders, "Earthrise", Apollo 8, NASA             | ![ethrs](assets/earthrise_final_128.jpg)   |
+| ![kangawa](assets/kanagawa.jpg) Katsushika Hokusai, "The Great Wave off Kanagawa," c. 1831 | ![kanagawa](assets/kanagawa_final_128.jpg) |

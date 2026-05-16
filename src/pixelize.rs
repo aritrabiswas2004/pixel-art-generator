@@ -19,6 +19,13 @@ fn upscale(downscaled_img: &DynamicImage, new_width: u32, new_height: u32) -> Dy
     downscaled_img.resize(new_width, new_height, DEFAULT_FILTER)
 }
 
+fn extract_name_root(img_path: &Path) -> &str {
+    img_path
+        .file_stem()
+        .and_then(|f| {f.to_str()})
+        .unwrap_or("output")
+}
+
 pub fn pixelize(image_path: &str, downscale_height: u32, verbose: bool) -> Result<(), Box<dyn std::error::Error>>{
     let img_path = Path::new(image_path);
     let img = image::open(img_path)?;
@@ -26,12 +33,7 @@ pub fn pixelize(image_path: &str, downscale_height: u32, verbose: bool) -> Resul
 
     println!("Input Image: {image_path} ({img_width}x{img_height})");
 
-    let dir = PathBuf::from(
-        img_path
-            .file_stem()
-            .and_then(|f| {f.to_str()})
-            .unwrap_or("output")
-    );
+    let dir = PathBuf::from(extract_name_root(img_path));
 
     fs::create_dir_all(&dir)?;
 
@@ -40,12 +42,12 @@ pub fn pixelize(image_path: &str, downscale_height: u32, verbose: bool) -> Resul
     if verbose {
         println!("[LOG] Downscaled image dimensions {new_width} x {new_height}");
     }
-    let ds_format_path = dir.join(format!("{}_downscaled_{downscale_height}.jpg", img_path.file_stem().and_then(|f| {f.to_str()}).unwrap_or("error")));
+    let ds_format_path = dir.join(format!("{}_downscaled_{downscale_height}.jpg", extract_name_root(img_path)));
     new_img.save(&ds_format_path)?;
 
     let final_upscale = upscale(&new_img, img_width, img_height);
     let (final_width, final_height) = new_img.dimensions();
-    let upscale_format_path = dir.join(format!("{}_final_{downscale_height}.jpg", img_path.file_stem().and_then(|f| {f.to_str()}).unwrap_or("error")));
+    let upscale_format_path = dir.join(format!("{}_final_{downscale_height}.jpg", extract_name_root(img_path)));
     final_upscale.save(&upscale_format_path)?;
 
     println!("======== Processing Complete ===========");
