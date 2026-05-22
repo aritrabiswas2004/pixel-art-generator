@@ -7,3 +7,7 @@
 - Palette reduction
 - Anti-aliasing
 - Dithering
+
+## How Palette Reduction Works
+
+

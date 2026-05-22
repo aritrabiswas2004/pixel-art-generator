@@ -1,4 +1,4 @@
-use image::{DynamicImage, GenericImageView};
+use image::{DynamicImage, GenericImageView, RgbImage};
 use image::imageops::{FilterType};
 use std::path::{Path, PathBuf};
 use std::fs;
@@ -26,7 +26,28 @@ fn extract_name_root(img_path: &Path) -> &str {
         .unwrap_or("output")
 }
 
-pub fn pixelize(image_path: &str, downscale_height: u32, verbose: bool) -> Result<(), Box<dyn std::error::Error>>{
+fn quantize_channel(v: u8, levels: u8) -> u8{
+    let step = 255 / (levels - 1);
+    ((v as f32 / step as f32).round() * step as f32) as u8
+}
+
+fn quantize_image(img: &mut RgbImage, levels: u8) {
+    for pixel in img.pixels_mut() {
+        let [r, g, b] = pixel.0;
+
+        pixel.0 = [
+            quantize_channel(r, levels),
+            quantize_channel(g, levels),
+            quantize_channel(b, levels),
+        ];
+    }
+}
+
+pub fn pixelize(
+    image_path: &str,
+    downscale_height: u32,
+    verbose: bool
+) -> Result<(), Box<dyn std::error::Error>>{
     let img_path = Path::new(image_path);
     let img = image::open(img_path)?;
     let (img_width, img_height) = img.dimensions();
@@ -45,7 +66,12 @@ pub fn pixelize(image_path: &str, downscale_height: u32, verbose: bool) -> Resul
     let ds_format_path = dir.join(format!("{}_downscaled_{downscale_height}.png", extract_name_root(img_path)));
     new_img.save(&ds_format_path)?;
 
-    let final_upscale = upscale(&new_img, img_width, img_height);
+    let mut small_image = new_img.to_rgb8();
+    quantize_image(&mut small_image, 8);
+    let color_format_path = dir.join(format!("{}_color_reduced_{downscale_height}.png", extract_name_root(img_path)));
+    small_image.save(&color_format_path)?;
+
+    let final_upscale = upscale(&DynamicImage::ImageRgb8(small_image), img_width, img_height);
     let (final_width, final_height) = new_img.dimensions();
     let upscale_format_path = dir.join(format!("{}_final_{downscale_height}.png", extract_name_root(img_path)));
     final_upscale.save(&upscale_format_path)?;
