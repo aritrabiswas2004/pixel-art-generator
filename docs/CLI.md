@@ -3,7 +3,7 @@
 > [!WARNING]
 > This documentation page is incomplete and may not be up to date as you read it.
 
-You can run the CLI as of version `0.1.0` only via development configuration involving
+You can run the CLI as of version `0.2.0` only via development configuration involving
 `cargo`.
 
 Run the program with
@@ -20,4 +20,6 @@ to directly process any image.
 - `-V` / `--version` : Prints version
 - `-d` / `--downscale` : Manually set the downscaling height in pixels (default is 128)
 - `-i` / `--imagepath` : Taken directly as the option with no preceding flag but can be added as well.
+- `-l` / `--levels`: Manually set the RGB channel quantixation step value (default is 8)
+
 Argument is the path to the image file.
