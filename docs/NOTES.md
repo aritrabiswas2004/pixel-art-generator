@@ -3,7 +3,6 @@
 ## Objectives
 
 - Make it work on gifs
-- Floyd-Steinberg
-- Palette reduction
+- Floyd-Steinberg (Dithering)
 - Anti-aliasing
-- Dithering
+- K means for more cartoon-y feel
