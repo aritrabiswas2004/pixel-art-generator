@@ -139,7 +139,7 @@ pub fn pixelize(
     small_image.save(&color_format_path)?;
 
     let final_upscale = upscale(&DynamicImage::ImageRgb8(small_image), img_width, img_height);
-    let (final_width, final_height) = new_img.dimensions();
+    let (final_width, final_height) = final_upscale.dimensions();
     let upscale_format_path = output_path("final");
     final_upscale.save(&upscale_format_path)?;
 
@@ -151,4 +151,20 @@ pub fn pixelize(
     println!("Final output (upscaled) saved at {:?}", upscale_format_path);
 
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn identical_dist_zero(){
+        assert_eq!(color_distance([10, 20, 30], [10, 20, 30]), 0);
+    }
+
+    #[test]
+    fn correct_name_root(){
+        assert_eq!(extract_name_root(Path::new("")), "output");
+        assert_eq!(extract_name_root(Path::new("a/b/imagename.jpg")), "imagename");
+    }
 }

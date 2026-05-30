@@ -6,6 +6,16 @@
 You can run the CLI as of version `0.2.0` only via development configuration involving
 `cargo`.
 
+## Tests
+
+Run the tests with
+
+```shell
+make tests
+```
+
+## Program Specifics
+
 Run the program with
 
 ```shell
