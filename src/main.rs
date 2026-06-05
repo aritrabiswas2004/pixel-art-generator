@@ -19,7 +19,7 @@ struct Args {
     #[arg(short, long, default_value_t = false)]
     verbose: bool,
 
-    /// Applies color palette to image, one of NONE, NES, GAMEBOY
+    /// Applies color palette to image, one of NES, GAMEBOY, PICO8, C64
     #[arg(short, long, default_value = "NONE")]
     palette: String,
 

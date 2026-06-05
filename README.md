@@ -3,7 +3,7 @@
 Convert any image to a 8-bit retro style image commonly referred to as [pixel art](https://www.reddit.com/r/PixelArt/).
 
 This particular tool provides more autonomy to the user, allowing them to choose various 
-downscaling ratios to alter the level of detail they want to retain in the image.
+downscaling ratios, quantization levels or color palettes to alter the level of detail and color they want to retain in the image.
 
 This project stems from my obsession with Pixel Art, which is now on every wallpaper on my laptop,
 including [this funny one](https://www.reddit.com/r/PixelArt/comments/iaz61i/its_all_pixels/#lightbox) as my main Desktop background. This project is still in its infancy as
@@ -23,7 +23,7 @@ git clone "https://github.com/aritrabiswas2004/pixel-art-generator"
 and then 
 
 ```shell
-cargo build
+make build
 ```
 
 and alternatively you can run directly which would start the CLI tool

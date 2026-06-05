@@ -5,10 +5,7 @@ erise:
 	cargo run -- ./assets/earthrise.jpg
 
 clean:
-	rm -rf earthrise/
-	rm -rf kanagawa/
-	rm -rf sky/
-	rm -rf bluemarble/
+	rm -rf pact_*
 
 tests:
 	cargo test

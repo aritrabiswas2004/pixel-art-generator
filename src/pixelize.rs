@@ -25,6 +25,52 @@ const NES: [Color; 8] = [
     [255, 128, 0],
 ];
 
+const PICO8: [Color; 16] = [
+    [0,0,0],[29,43,83],[126,37,83],[0,135,81],
+    [171,82,54],[95,87,79],[194,195,199],[255,241,232],
+    [255,0,77],[255,163,0],[255,236,39],[0,228,54],
+    [41,173,255],[131,118,156],[255,119,168],[255,204,170]
+];
+
+// commodore 64
+const C64: [Color; 16] = [
+    [0, 0, 0],
+    [255, 255, 255],
+    [104, 55, 43],
+    [112, 164, 178],
+    [111, 61, 134],
+    [88, 141, 67],
+    [53, 40, 121],
+    [184, 199, 111],
+    [111, 79, 37],
+    [67, 57, 0],
+    [154, 103, 89],
+    [68, 68, 68],
+    [108, 108, 108],
+    [154, 210, 132],
+    [108, 94, 181],
+    [149, 149, 149],
+];
+
+const DB16: [Color; 16] = [
+    [20, 12, 28],
+    [68, 36, 52],
+    [48, 52, 109],
+    [78, 74, 78],
+    [133, 76, 48],
+    [52, 101, 36],
+    [208, 70, 72],
+    [117, 113, 97],
+    [89, 125, 206],
+    [210, 125, 44],
+    [133, 149, 161],
+    [109, 170, 44],
+    [210, 170, 153],
+    [109, 194, 202],
+    [218, 212, 94],
+    [222, 238, 214],
+];
+
 // NOTE: Downscale height can theoretically be any u32 but keep it 64, 128, 256
 fn initial_downscale(img: &DynamicImage, downscale_height: u32) -> DynamicImage {
     let (original_width, original_height) = img.dimensions();
@@ -113,7 +159,7 @@ pub fn pixelize(
 
     println!("Input Image: {image_path} ({img_width}x{img_height})");
 
-    let dir = PathBuf::from(name_root);
+    let dir = PathBuf::from("pact_".to_owned() + name_root);
     let output_path = |property: &str| dir.join(format!("{name_root}_{property}_{downscale_height}.png"));
 
     fs::create_dir_all(&dir)?;
@@ -131,6 +177,11 @@ pub fn pixelize(
     match palette.to_ascii_lowercase().as_str() {
         "nes" => apply_palette(&mut small_image, &NES),
         "gameboy" => apply_palette(&mut small_image, &GAMEBOY),
+        "pico" => apply_palette(&mut small_image, &PICO8),
+        "db16" => apply_palette(&mut small_image, &DB16),
+        "c64" => apply_palette(&mut small_image, &C64),
+
+        // other
         "none" => quantize_image(&mut small_image,levels),
         val => panic!("Color palette name '{val}' does not exist")
     }
