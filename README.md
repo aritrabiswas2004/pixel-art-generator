@@ -40,8 +40,12 @@ is created.
 All these images are processed at a downscaled height of 128 pixels before being upscaled
 to its original dimension. This can be changed though, as per the user's requirements.
 
+Also thanks to a brilliant suggestion by [Arnav](https://github.com/Arnav0405) on improved gradients on pictures with complex gradients
+(like an dawn/dusk sky), color quantization level 32 works best for these situations.
+
 | Original                                                                                           | Processed                                  |
 |----------------------------------------------------------------------------------------------------|--------------------------------------------|
 | ![bluemarble](assets/bluemarble.jpg) Harrison Schmitt, "The Blue Marble", Apollo 17, NASA          | ![bmrbl](assets/bluemarble_final_128.jpg)  |
 | ![earthrise](assets/earthrise.jpg) William Anders, "Earthrise", Apollo 8, NASA             | ![ethrs](assets/earthrise_final_128.jpg)   |
 | ![kangawa](assets/kanagawa.jpg) Katsushika Hokusai, "The Great Wave off Kanagawa," c. 1831 | ![kanagawa](assets/kanagawa_final_128.jpg) |
+| ![sky](assets/tokyotower.jpg) Anonymous photographer on X, c. 2026 | ![sky_final](assets/tokyotower_final_128.png) |
